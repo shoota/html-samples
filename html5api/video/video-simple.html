@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <title>単純なVIDEO再生のサンプル.</title>
+
+<style type="text/css">
+  .video-block
+  {
+    display: block;
+  }
+  h1
+  {
+
+  }
+</style>
+<script type="text/javascript" src="../commonjs/jquery-1.7.2.min.js"></script>
+<script src="http://api.html5media.info/1.1.5/html5media.min.js"></script>
+</head>
+
+<body>
+  <h1>各ブラウザの対応状況検証</h1>
+  <div id="video-block">
+    <h2>mp4 H.264</h2>
+    <video id="video1" controls width="400">
+    <source src="/video/vd/local.m4v">
+    </video>
+  </div>
+
+  <div id="video-block">
+    <h2>mp4</h2>
+    <video id="video1" controls width="400">
+    <source src="./vd/chicken.mp4">
+    </video>
+  </div>
+
+  <div id="video-block">
+    <h2>webm</h2>
+    <video id="video2" controls width="400">
+    <source src="./vd/chicken.webm">
+    </video>
+  </div>
+
+  <div id="video-block">
+    <h2>ogg</h2>
+    <video id="video3" controls width="400">
+    <source src="./vd/chicken.ogg">
+    </video>
+  </div>
+
+  <div id="video-block">
+    <h2>theora ogg</h2>
+    <video id="video4" controls width="400">
+    <source src="./vd/Theora_vorvis.webm">
+    </video>
+  </div>
+
+
+
+</body>
+</html>

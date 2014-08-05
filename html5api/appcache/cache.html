@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html manifest="cache.appcache">
+<!--<html>-->
+<head>
+<meta charset="UTF-8">
+<title>Application Cache Sample</title>
+<script src="cache.js"></script>
+<link rel="stylesheet" href="css/appcache.css" type="text/css">
+</head>
+<body onload="init()">
+<!-- <body> -->
+  <header>
+    Application Cacheを利用して、ブラウザ内のキャッシュファイルを更新します。<br>
+    サーバ上のリソースの変更をJavaScriptで監視し、オンラインであれば取得が可能です。<br>
+    動作確認：GoogleChrome v21.x<br>
+      [note]<br>
+      マニフェストファイルのMIMEタイプをApacheに指定する必要がある。<br>
+      httpd.confに"AddType text/cache-manifest .appcache"を追記。
+  </header>
+  <div class="img-container">
+    <ul>
+      <li><img src="image/cache1.jpg"></li>
+      <li><img src="image/cache2.jpg"></li>
+      <li><img src="image/cache3.jpg"></li>
+      <li><img src="image/cache4.jpg"></li>
+      <li><img src="image/cache5.jpg"></li>
+      <li><img src="image/cache6.jpg"></li>
+      <div style="clear:both;">
+    </ul>
+  </div>
+
+</body>
+</html>

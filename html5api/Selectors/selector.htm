@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-31j">
+<title>Selector API Level1</title>
+<link rel="stylesheet" href="css/selector.css" type="text/css" >
+
+</head>
+<body>
+
+<span class="note">
+  Selector API Level1を使用し、CSSやタグごとに要素を表示します。
+  jQueryがあるので、それほど重要ではない？
+</span>
+<section class="alubum" style="margin:10px;">
+  <form action="#" >
+    <select onchange="changeView();">
+      <option value="all">------</option>
+      <option value="plant">植物</option>
+      <option value="animal">動物</option>
+      <option value="food">食物</option>
+      <option value="transportation">乗り物</option>
+      <option value="scene">風景</option>
+    </select>
+  </form>
+  <!--
+  <span style="font-size:0.8em; color:#3A0844"><a onclick="hideImg();">画像非表示</a></span>
+  <span style="font-size:0.8em; color:#3A0844"><a onclick="viewImg();">画像再表示</a></span>
+  -->
+   <div class="plant">
+      <h2>植物</h2>
+      <span>
+      <img src="image/ajisai.jpg">
+      <img src="image/hasu.jpg">
+      <img src="image/himawari.jpg">
+      </span>
+    </div>
+    <div class="animal">
+      <h2>動物</h2>
+      <span>
+      <img src="image/cat.jpg">
+      <img src="image/tiger.jpg">      <img src="image/ellephant.jpg">
+      </span>
+    </div>
+    <div class="food">
+      <h2>食物</h2>
+      <span>
+      <img src="image/kaisen-don.jpg">
+      <img src="image/warabi.jpg">
+      </span>
+    </div>
+    <div class="transportation">
+      <h2>乗り物</h2>
+      <span>
+        <img src="image/ship.jpg">
+        <img src="image/sl.jpg">
+      </span>
+    </div>
+    <div class="scene">
+    <h2>風景</h2>
+        <span>
+        <img src="image/hotspring.jpg">
+        <img src="image/sky.jpg">
+        </span>
+    </div>
+</section> <!-- alubum -->
+
+<script type="text/javascript">
+  function changeView(){
+    var ui = document.querySelector("select");
+    var vC = ui.value;
+    var div = document.querySelectorAll("div");
+    for(var i=0; i<div.length; i++){
+      if(div[i].className == vC || vC == "all") {
+        div[i].style.display = "block";
+      } else {
+        div[i].style.display = "none";
+      }
+    }
+  }
+
+  function hideImg(){
+    var img = document.querySelectorAll("img");
+    for(var i=0; i<img.length; i++){
+        img[i].style.display = "none";
+      }
+  }
+
+  function viewImg(){
+    var div = document.querySelectorAll("img");
+    changeView();
+    for(var i=0; i<div.length; i++){
+        div[i].style.display = "relative";
+      }
+  }
+
+</script>
+</body>
+</html>

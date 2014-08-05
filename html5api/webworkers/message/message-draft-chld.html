@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>子フレーム</title>
+</head>
+<body style="background: #E3E3E3;">
+子フレーム
+<p id="mssge-detail"></p>
+</body>
+<script type="text/javascript">
+    //messageイベントの定義
+    window.addEventListener( 'load', function(){
+        //messageイベントのリスナをセット
+        window.addEventListener( 'message', recieveMsg, false);
+    }, false);
+
+    //受け取り側コールバック
+    function recieveMsg(evt){
+        var p = document.getElementById("mssge-detail");
+        var org = 'http://localhost';
+        // 簡易XSSチェック
+        if( evt.origin != org ){
+            return;
+        }
+        //受取時刻をつけて返信する
+        var now = new Date();
+        var tm = now.getHours() + "：" + now.getMinutes() + "：" + now.getSeconds();
+        var rt = "受信時刻：" + tm + " 内容:" + evt.data;
+        evt.source.postMessage(rt , org );
+        //受信内容をフレームないに吐き出す
+        var msg = "\n";
+        msg = msg + "オリジン:["+ evt.origin + "]<br>\n";
+        msg = msg + "内容:[" + evt.data + "]<br>\n";
+        msg = msg + "時刻:[" + tm + "]<br>\n";
+        p.innerHTML = msg;
+    }
+</script>
+</html>

@@ -1,0 +1,39 @@
+header {
+	left: 5%;
+    color: #CF1D1D;
+    font-size: 0.8em;
+    margin: 3px;
+    background-color: #e3e3ef
+}
+
+.container {
+	position: relative;
+	top: 10px;
+	left: 10px;
+	width: 80%;
+}
+
+.tile {
+	position: relative;
+	float: left;
+	padding: 0px;
+	margin:10px;
+	border: 2px dashed #50C4E0;
+	width: 150px;
+	height: 1em;;
+	font-size: 0.8em;
+	text-align: center;
+}
+
+
+.wtile {
+	position: relative;
+	float: left;
+	padding: 0px;
+	margin:10px;
+	border: 2px solid #50C4E0;
+	width: 150px;
+	height: 1em;;
+	font-size: 0.8em;
+	text-align: center;
+}

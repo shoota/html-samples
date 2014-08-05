@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>画像ファイルの読み込み</title>
+<script type="text/javascript">
+
+/*
+ * 選択されたファイルへの操作
+ */
+function filesSelected(files) {
+
+  var results = document.getElementById("results");
+  for (var i = 0; i < files.length; i++) {
+      readFile(files[i]);
+  }
+};
+
+function readFile(file) {
+    var reader = new FileReader();
+
+    // file type判定
+    if(file.type.match('image.*')){
+        reader.onloadend = function(e) {
+            var li = document.createElement('div');
+            var img = document.createElement('img');
+            //readerの結果をimgの参照へ渡す
+            img.src=e.target.result;
+            li.appendChild(img);
+            li.innerHTML += "<br>";
+            document.getElementById("read-results").appendChild(li);
+        };
+        reader.readAsDataURL(file);
+    } else {
+        alert(file.name + "は画像ファイルではありません。");
+    }
+    reader.onerror = function(e){
+        alert("ファイル読み取りエラー");
+    }
+
+};
+
+/*
+ * Fileがdragされたときの動作
+ */
+function onFileOver(e) {
+  e.preventDefault();
+};
+
+/*
+ * Fileがdropされたときの動作
+ */
+function onFileDrop(e) {
+  filesSelected(e.dataTransfer.files);
+  e.preventDefault();
+  e.stopPropagation();
+};
+</script>
+</head>
+<body>
+  <div
+    style="width: 220px; height: 80px; border: 1px solid gray;"
+    ondragover="onFileOver(event)"
+    ondrop="onFileDrop(event)">
+    ここにファイルをドラッグ＆ドロップしてください。
+  </div>
+
+<div id="read-results"></div>
+
+</body>
+</html>

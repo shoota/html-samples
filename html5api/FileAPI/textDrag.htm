@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>テキストファイルの読み込み</title>
+<meta charset="UTF-8">
+<script type="text/javascript">
+
+/*
+ * 選択されたファイルへの操作
+ */
+function filesSelected(files) {
+
+  var results = document.getElementById("results");
+  var reader = new FileReader();
+  for (var i = 0; i < files.length; i++) {
+    reader.onloadend = function(e) {
+      results.value = reader.result;
+    };
+    reader.readAsText(files[i]);
+  }
+
+
+/* divに吐き出すバージョン
+  var results = document.getElementById("read-results");
+  results.innerHTML = "read<br>";
+  for (var i = 0; i < files.length; i++) {
+    var result = document.createElement("div");
+    var content = document.createElement("div");
+    content.className = "content";
+    result.appendChild(content);
+    results.appendChild(result);
+    readFile(files[i], content);
+  }
+*/
+};
+
+function readFile(file, contentArea) {
+    var reader = new FileReader();
+    reader.onloadend = function(e) {
+      contentArea.textContent = reader.result;
+    };
+    reader.onerror = function() {
+      switch (reader.error.code) {
+      case FileError.NOT_FOUND_ERR:
+        alert("ファイルが見つかりません:" + file.name);
+        break;
+      case FileError.NOT_READABLE_ERR:
+        alert("ファイルを読み込めません:" + file.name);
+        break;
+      case FileError.SECURITY_ERR:
+        alert("セキュリティエラー:" + file.name);
+        break;
+      case FileError.ABORT_ERR:
+        alert("読み込みが中断されました:" + file.name);
+        break;
+      case FileError.ENCODING_ERR:
+        alert("不正なエンコーディングです:" + file.name);
+        break;
+      }
+    };
+    //var encodingList = document.getElementById("encoding");
+    //var encoding = encodingList.options[encodingList.selectedIndex].value;
+    reader.readAsText(file);
+};
+
+/*
+ * Fileがdragされたときの動作
+ */
+function onFileOver(e) {
+  e.preventDefault();
+};
+
+/*
+ * Fileがdropされたときの動作
+ */
+function onFileDrop(e) {
+  filesSelected(e.dataTransfer.files);
+  e.preventDefault();
+  e.stopPropagation();
+};
+</script>
+</head>
+<body>
+  <div
+    style="width: 220px; height: 80px; border: 1px solid gray;"
+    ondragover="onFileOver(event)"
+    ondrop="onFileDrop(event)">
+    ここにファイルをドラッグ＆ドロップしてください。
+  </div>
+
+<!--
+<div id="read-results"></div>
+-->
+<textarea id="results" rows="8" cols="40"></textarea>
+
+</body>
+</html>

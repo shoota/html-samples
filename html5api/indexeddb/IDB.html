@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="IDB.css" type="text/css" >
+    <style>
+        body {
+            color: #222;
+            font: 14px Arial;
+        }
+        body a {
+            color: #3D5C9D;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        /*
+         * DB Objectを取得、webkit仕様を吸収、DBパラメータを初期化。
+         */
+        var testDBObj = {};
+        var indexedDB = window.indexedDB || window.webkitIndexedDB ||
+                window.mozIndexedDB;
+
+        if ('webkitIndexedDB' in window) {
+            window.IDBTransaction = window.webkitIDBTransaction;
+            window.IDBKeyRange = window.webkitIDBKeyRange;
+        }
+
+        testDBObj.indexedDB = {};
+        testDBObj.indexedDB.db = null;
+
+        /*
+         * DB error ; 'onerror'
+         */
+        testDBObj.indexedDB.onerror = function(e) {
+            console.log(e);
+        };
+
+        /*
+         * DB open
+         */
+        testDBObj.indexedDB.open = function() {
+            // DB名を指定してオープン
+            var request = indexedDB.open("todos");
+
+            //オープン成功時の挙動を定義。
+            request.onsuccess = function(e) {
+                var v = "1.99";
+                testDBObj.indexedDB.db = e.target.result;
+                var db = testDBObj.indexedDB.db;
+                // versionのセットトランザクションでのみObjectStoreが作れる。(DDLが実行可能)
+                if (v!= db.version) {
+                    var setVrequest = db.setVersion(v);
+
+                    // versionのセットに成功したらObjectStoreを作成
+                    setVrequest.onerror = testDBObj.indexedDB.onerror;
+                    setVrequest.onsuccess = function(e) {
+                        if(db.objectStoreNames.contains("todo")) {
+                            db.deleteObjectStore("todo");
+                        }
+                        var store = db.createObjectStore("todo",
+                                {keyPath: "timeStamp"});
+
+                        // 全部吐き出し
+                        testDBObj.indexedDB.getAllTodoItems();
+                    };
+                }
+                else {
+                    testDBObj.indexedDB.getAllTodoItems();
+                }
+            };
+
+            request.onerror = testDBObj.indexedDB.onerror;
+        }
+
+        /*
+         * DBへのデータ追加
+         * @param todoText 追加するValue
+         */
+        testDBObj.indexedDB.addTodo = function(todoText) {
+            var db = testDBObj.indexedDB.db;
+            //読み書き可能でトランザクションを開始
+            var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE);
+            var store = trans.objectStore("todo");
+            var data = {
+                "text": todoText,
+                "timeStamp": new Date().getTime()
+            };
+            // Insert
+            var request = store.put(data);
+            //データ再走査
+            request.onsuccess = function(e) {
+                testDBObj.indexedDB.getAllTodoItems();
+            };
+
+            request.onerror = function(e) {
+                console.log("Error Adding: ", e);
+            };
+        };
+
+        /*
+         * DBデータの削除
+         * @param id 削除するレコードのキー
+         */
+        testDBObj.indexedDB.deleteTodo = function(id) {
+            var db = testDBObj.indexedDB.db;
+            //読み書き可能でトランザクションを開始
+            var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE);
+            var store = trans.objectStore("todo");
+            // Delete
+            var request = store.delete(id);
+            //データ再走査
+            request.onsuccess = function(e) {
+                testDBObj.indexedDB.getAllTodoItems();
+            };
+            request.onerror = function(e) {
+                console.log("Error Adding: ", e);
+            };
+        };
+
+        /*
+         * DBデータの走査
+         */
+        testDBObj.indexedDB.getAllTodoItems = function() {
+            var todos = document.getElementById("todoItems");
+            todos.innerHTML = "";
+
+            var db = testDBObj.indexedDB.db;
+            var trans = db.transaction(["todo"], IDBTransaction.READ_WRITE);
+            var store = trans.objectStore("todo");
+
+            // Get everything in the store;
+            var keyRange = IDBKeyRange.lowerBound(0);
+            var cursorRequest = store.openCursor(keyRange);
+
+            cursorRequest.onsuccess = function(e) {
+                var result = e.target.result;
+                if(!!result == false)
+                    return;
+                //画面に書き出し
+                renderTodo(result.value);
+                result.continue();
+            };
+
+            cursorRequest.onerror = testDBObj.indexedDB.onerror;
+        };
+
+        /*
+         * データの書き出し
+         */
+        function renderTodo(row) {
+            var todos = document.getElementById("todoItems");
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            var t = document.createTextNode(row.text);
+
+            // Deleteメソッドのトリガーとしてイベントリスナをセット
+            a.addEventListener("click", function() {
+                testDBObj.indexedDB.deleteTodo(row.timeStamp);
+            }, false);
+
+            a.textContent = " [消去]";
+            li.appendChild(t);
+            li.appendChild(a);
+            todos.appendChild(li)
+        }
+
+        // DOM Interface method
+        function addTodo() {
+            var todo = document.getElementById("todo");
+            testDBObj.indexedDB.addTodo(todo.value);
+            todo.value = "";
+        }
+
+        function init() {
+            testDBObj.indexedDB.open();
+        }
+
+        //DOMの準備が完了したらDBをopen
+        window.addEventListener("DOMContentLoaded", init, false);
+    </script>
+</head>
+<body>
+<header>
+    <p style="padding-left:20px;">ブラウザないのDBにJavaScriptオブジェクトを保存します。<br>
+    [note]Chrome 19.x以上で動作
+    </p>
+</header>
+<ul id="todoItems"></ul>
+<input type="text" id="todo" name="todo" placeholder="メモ欄" style="width: 200px;" />
+<input type="submit" value="Add Todo Item" onclick="addTodo(); return false;"/>
+</body>
+</html>​

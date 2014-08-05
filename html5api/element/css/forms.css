@@ -1,0 +1,18 @@
+body {
+	font-size: 1.0em;
+}
+.form-block {
+	display: block;
+	background-color: #e3e3e3;
+	font-family:"Gill Sans", "Trebuchet MS", sans-serif;
+}
+
+.form-block h2 {
+	font-size: 1.6em;
+	color: #blue;
+}
+
+.form-block p {
+	font-size: 0.8em;
+	color: #blue;
+}

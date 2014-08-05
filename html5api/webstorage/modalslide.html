@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta charset="UTF-8">
+  <title>webstorage undo redo ブラウジング</title>
+
+<link rel="stylesheet" type="text/css" href="css/modal.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/modal-slide.css" media="all">
+<script type="text/javascript" src="../commonjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/css-modal.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="image-thumb">
+      <span>
+      ユーザの閲覧履歴をセッションストレージに保存して、表示のUndo／Redoができます。
+      WebStorage API がサポートされないブラウザでは、Undo／Redoボタンが表示されません。
+      </span>
+      <ul class="image">
+        <li><img src="image/IMG_0017.jpg" class="thumb"></li>
+        <li><img src="image/IMG_0019.jpg" class="thumb"></li>
+        <li><img src="image/IMG_0020.jpg" class="thumb"></li>
+        <li><img src="image/IMG_0021.jpg" class="thumb"></li>
+        <li><img src="image/IMG_0022.jpg" class="thumb"></li>
+        <li><img src="image/IMG_0023.jpg" class="thumb"></li>
+        <li><img src="image/IMG_0024.jpg" class="thumb"></li>
+        <li><img src="image/C360_01.jpg" class="thumb"></li>
+        <li><img src="image/C360_02.jpg" class="thumb"></li>
+        <li><img src="image/C360_03.jpg" class="thumb"></li>
+        <li><img src="image/C360_04.jpg" class="thumb"></li>
+        <li><img src="image/C360_05.jpg" class="thumb"></li>
+      </ul>
+      <div style="clear:both;"></div>
+    </div>
+    <div class="overlay-container">
+      <div class="window-container zoom">
+          <h3>you can see view history yourself.</h3>
+          <div class="view-img-container"><img src="image/notfound.jpg" class="view-img"></div>
+
+          <div class="history">
+            <span class="button-header">View History</span>
+            <span class="history-button" id="previous">Undo</span>
+            <span class="history-button" id="next">Redo</span>
+            <div style="clear:both;"></div>
+          </div>
+          <!-- 余力でやる
+          <div class="next">
+            <span class="close">next</span>
+            <span class="close">back</span>
+          </div>
+          -->
+        <div style="clear:both;"></div>
+        <span class="close">Close</span>
+
+      </div><!-- overlay-container -->
+    </div><!-- window-container -->
+  </div><!-- container -->
+
+
+
+</body>
+</html>

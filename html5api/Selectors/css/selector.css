@@ -1,0 +1,90 @@
+.note {
+	left: 5%;
+    color: #CF1D1D;
+    font-size: 0.8em;
+    margin: 3px;
+    background-color: #e3e3ef;
+    width: 80%;
+    padding: 3px;
+    margin: 5px;
+}
+
+h1 {
+	font-family: monospace;
+	font-size: 2em;
+}
+
+h2 {
+	font-family: monospace;
+	font-size: 1em;
+}
+
+img{
+	border: 2px #e2e2e2;
+	padding: 0px;
+	margin: 10px;
+	width: 200px;
+}
+
+.album {
+	padding: 0px;
+	margin:0px;
+}
+
+.life {
+	display:block;
+	width: 80%;
+	padding:20px;
+	margin: 5px;
+	background-color: #B4B4B4;
+}
+
+
+	.plant {
+		display: block;
+		background-color: #9AE4BB;
+		position: relative;
+		width: 670px;
+		left: 10px;
+		right: 10px;
+	}
+
+	.animal {
+		background-color: #CCCC25;
+		position: relative;
+		width: 670px;
+		left: 10px;
+		right: 10px;
+	}
+
+	.food {
+		background-color: #D5C395;
+		position: relative;
+		width: 670px;
+		left: 10px;
+		right: 10px;
+	}
+
+.not-life {
+	display:block;
+	width: 80%;
+	padding:20px;
+	margin: 5px;
+	background-color: blue;
+}
+
+.transportation {
+		background-color: #6161FF;
+		position: relative;
+		width: 670px;
+		left: 10px;
+		right: 10px;
+	}
+
+.scene {
+		background-color: #Dd3395;
+		position: relative;
+		width: 670px;
+		left: 10px;
+		right: 10px;
+	}

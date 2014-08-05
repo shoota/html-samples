@@ -1,0 +1,14 @@
+
+
+.photo {
+    display: inline-block;
+    height: 800px;
+    width: 800px;
+    margin-left: 5px;
+}
+
+.photo>img {
+
+    height: 800px;
+    width: 800px;
+}

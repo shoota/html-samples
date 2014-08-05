@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Editing API Sample</title>
+<script src="../commonjs/jquery-1.7.2.min.js"></script>
+<script src="editing.js"></script>
+<link rel="stylesheet" href="css/editing.css" type="text/css">
+</head>
+<body>
+  <header>
+    HTMLドキュメントを編集可能とするAPIです。<br>
+    吹き出しのなかを自由に編集でき、Submitを押すとページ下部に表示されます。<br>
+    動作確認：GoogleChrome v21.x FireFox 12.0
+  </header>
+
+    <div class="bubble">
+    <p class="bbody" contenteditable>CSS3で書いた吹き出しです。クリックすると編集できます。</p>
+  </div>
+  <div style="clear:both;"></div>
+  <div class="submit">Submit comment!</div>
+  <div class="comment-box">
+  </div>
+</body>
+</html>

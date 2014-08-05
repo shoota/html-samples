@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>NativeなJSのみを使用したCross-Document Messaging</title>
+</head>
+<body style="background-color: #50C4E0;">
+<header>
+    異なるドキュメント間でのメッセージの授受を可能にするAPI。<br>
+    1. 親フレームからメッセージの送信<br>
+    2. 子フレームが受信、時刻文字列を付与<br>
+    3. 子フレーム内でメッセージ情報の詳細を子フレーム内のHTMLへ表示<br>
+    4. 子フレームから親フレームへ返信<br>
+    5. 親フレームで返信内容を表示
+    動作確認：GoogleChrome v21.x FireFox 12.0
+</header>
+<form id="red" onsubmit="return false;">
+    <input id="red-input" type="text" placeholder="メッセージ" />
+    <button id="red-submit" onclick="postMsg();">送信</button>
+</form>
+<iframe id="red-frame" src="http://localhost/kumano/message/message-draft-chld.html" class="frm" width="600px"></iframe>
+
+<h2>インラインフレームから受信したメッセージを表示</h2>
+<p id="msg-board"></p>
+
+    <script type="text/javascript">
+        //messageイベントリスナをセット
+            window.addEventListener( 'load', function(){
+                window.addEventListener( 'message', backMsg, false);
+            }, false);
+
+        /**
+         * 返されるメッセージをのイベントリスナ関数
+         */
+        function backMsg(evt){
+        var board = document.getElementById("msg-board");
+        var org = 'http://localhost';
+        // XSS簡易チェック
+        if( evt.origin != org ){
+            return;
+        }
+        //戻った結果を表示
+        board.innerHTML = board.innerHTML + evt.data + "<br/>\n";
+    }
+
+    /*
+     * 送信ボタンクリック時のイベントリスナ関数
+     */
+    function postMsg(){
+        var msg = document.getElementById("red-input");
+        var frm = document.getElementById("red-frame");
+        var org = 'http://localhost';
+        msg.value = ( msg.value === null ) ? "" : msg.value;
+        if( msg.value != "" ){
+            frm.contentWindow.postMessage( msg.value, org );
+        }
+        else
+        {
+            alert('Do not send Empty Message.');
+        }
+    }
+</script>
+</body>
+</html>

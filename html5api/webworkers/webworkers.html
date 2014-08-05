@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>webworkers</title>
+    <link rel="stylesheet" href="webworkers.css" type="text/css" >
+    <script type="text/javascript" src="../commonjs/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<header>
+    <p style="padding-left:20px;">0から10億までを足しあげる処理を実行します。<br>
+        WebWorkers未使用の場合は計算が終わるまでテキストエリアへの入力ができませんが、
+        WebWorkersを使用すると計算中もテキストエリアに入力ができます。
+    </p>
+</header>
+<div class="container">
+    <textarea name="tarea" rows="10" cols="40"></textarea>
+    <div class="container">
+        <div class="tile">WebWorkersなし</div>
+        <div class="wtile">WebWorkersあり</div>
+    </div>
+</div>
+<footer>
+</footer>
+
+<script type="text/javascript">
+    $(function(){
+        $(".tile").click(function(){
+            var value=0;
+            for(var i=0;i<1000000000;i++){
+                value=value+i;
+            }
+            alert(value);
+        });
+        $(".wtile").click(function(){
+            if(window.Worker){
+                var worker = new Worker("workers.js");
+            }else{
+                alert("webworkersが使えません");
+                return false;
+            }
+            worker.onmessage = function(event){
+                alert(event.data);
+                //$(this).html(event.data);
+            }
+            worker.addEventListener("error", function(){} , true);;
+            worker.postMessage("10000000000");
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

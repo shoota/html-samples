@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>WebRTC sample</title>
+    <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'></script>
+    <style>
+        .view {
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<div class=content>
+    <div class=left>
+        <h3>demo</h3>
+        <video class="view" controls autoplay></video>
+        <output></output>
+    </div>
+    <canvas class="view"></canvas>
+    <img src="" id="previeJpg" class="view">
+    <button id="shot">撮影</button>
+
+    <div class=right>
+        <h3>code</h3>
+<pre class="prettyprint">
+</pre>
+    </div>
+
+    <div class=clear></div>
+</div>
+
+
+
+<script id="rtc">
+    $(function(){
+        // Assign the <video> element to a variable
+        var video = $('video')[0];
+
+        // Replace the source of the video element with the stream from the camera
+        navigator.getUserMedia_ = navigator.getUserMedia || navigator.webkitGetUserMedia;
+        if(!!navigator.getUserMedia_ !== false) {
+            try {
+                navigator.getUserMedia_({"video": true, toString: function(){return "video"}}, successCallback, errorCallback);
+            } catch(e) {
+                console.log(e);
+            }
+
+            function successCallback(stream) {
+                video.src = window.webkitURL ?
+                        window.webkitURL.createObjectURL(stream) :
+                        stream;
+            }
+            function errorCallback(error) {
+                console.error('An error occurred: [CODE ' + error.code + ']');
+                return;
+            }
+        } else {
+            console.log('Native web camera streaming (getUserMedia) is not supported in this browser.');
+            $('output').html('Sorry, your browser doesn\'t support getUserMedia. ')
+                    .append('<p>Try Chrome canary or dev channel ')
+                    .append('with enabling MediaStream at chrome://flags ')
+                    .append('(To be sure that it is now experimental ')
+                    .append("and don't forget to set --enable-media-stream ")
+                    .append("as a execute parameter)")
+                    .append('</p>')
+
+            return;
+        }
+
+
+        $('#shot').click(function(){
+            var video = $('video')[0];
+            var canvas = $('canvas')[0];
+            var ctx = canvas.getContext('2d');
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+            $('#previeJpg').attr('src', canvas.toDataURL("image/jpeg"));
+
+        });
+
+    });
+</script>
+
+<!-- display sample code inside <pre> -->
+<script>
+    var code = $("#rtc").text().replace(/</g, "&lt;").replace(/>/g, "&gt");
+    $("pre").html(code);
+</script>
+
+</body>
+<hr>
+
+</html>

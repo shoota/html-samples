@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" >
+<title>mediaelement</title>
+<script src="../../commonjs/jquery-1.7.2.min.js"></script>
+<script src="http://api.html5media.info/1.1.5/html5media.min.js"></script>
+<script src="build/mediaelement-and-player.min.js"></script>
+<link rel="stylesheet" href="build/mediaelementplayer.min.css" />
+<style>
+body {
+    margin:20px;
+    padding:0px;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+  <div class="movie-container">
+    <!-- Multiple codecs with Flash fallback -->
+    <video id="player" width="640" height="480" poster="media/echo-hereweare.jpg" controls="controls" preload="none">
+        <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
+        <source type="video/mp4" src="media/echo-hereweare.mp4" />
+        <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
+        <source type="video/webm" src="media/echo-hereweare.webm" />
+        <!-- Ogg/Vorbis for older Firefox and Opera versions -->
+        <source type="video/ogg" src="media/echo-hereweare.ogv" />
+    </video>
+  </div>
+  <div class="movie-container">
+    <!-- Flash fallback for non-HTML5 browsers without JavaScript
+            [note]: resolve non-HTML5 browsers with HTML5media.js. -->
+    <object width="320" height="240" type="application/x-shockwave-flash" data="build/flashmediaelement.swf">
+        <param name="movie" value="http://blog.alt-scape.com/js/mediaelement_js/build/flashmediaelement.swf" />
+        <param name="flashvars" value="controls=true&poster=media/html5video.jpg&file=media/html5video.mp4" />
+        <img src="media/html5video.jpg" width="320" height="240" title="" />
+    </object>
+  </div>
+
+<script>
+// jQuery method
+$('video').mediaelementplayer();
+
+// normal JavaScript
+var player = new MediaElementPlayer('#player');
+</script>
+</body>
+</html>

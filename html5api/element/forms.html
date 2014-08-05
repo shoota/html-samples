@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>forms elements sample</title>
+  <link rel="stylesheet" href="css/forms.css" type="text/css" charset="utf-8"/>
+</head>
+
+<body>
+
+<div class="form-block">
+  <h2>検索フォーム</h2>
+  <p>Mac版SafariでブラウズするとSpotlight風の入力画面が表示される。</p>
+  <form name="frm1" action="#" method="post">
+  検索（type="search"）:<input type="search" name="search">
+  <input type="submit" value="検索">
+  </form>
+</div>
+
+<div class="form-block">
+  <h2>HTML5新要素フォーム</h2>
+  <p>
+     ステップの有り無し、range,colorなどは表示できないなど、ブラウザによって挙動が異なる。
+  </p>
+  <form name="frm2" action="#" method="post">
+  <table>
+    <tr><td>Mail (type="mail")</td><td>:<input type="email" name="email"></td></tr>
+    <tr><td>ホームページ (type="url")</td><td>:<input type="url" name="url"></td></tr>
+    <tr><td>電話番号（type="telephone"）</td><td>:<input type="tel" name="tel"></td></tr>
+    <tr><td>年齢（type="number"）</td><td>:<input type="number" name="number"></td></tr>
+    <tr><td>誕生日（type="date"）</td><td>:<input type="date" name="date"></td></tr>
+    <tr><td>時間（type="datetime"）</td><td>:<input type="datetime" name="datetime"></td></tr>
+    <tr><td>日本時間（type="datetime-local"）</td><td>:<input type="datetime-local" name="datetime-local"></td></tr>
+    <tr><td>月（type="month"）</td><td>:<input type="month" name="month"></td></tr>
+    <tr><td>週（type="week"）</td><td>:<input type="week" name="week"></td></tr>
+    <tr><td>時間（type="time"）</td><td>:<input type="time" name="time"></td></tr>
+    <tr><td>スライダー（type="range"）</td><td>:<input type="range" name="range"></td></tr>
+    <tr><td>色（type="color"）</td><td>:<input type="color" name="color"></td></tr>
+   </table>
+     <input type="submit" value="送信">
+  </form>
+</div>
+
+</body>
+</html>
