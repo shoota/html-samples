@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Adaptor :: jQuery content slider</title>
+
+    <link href="css/screen.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="page">
+
+    <section>
+        <header>
+            <hgroup>
+                <h1>Adaptor</h1>
+                <h2>jQuery content slider</h2>
+            </hgroup>
+        </header>
+
+        <div id="viewport-shadow">
+
+            <a href="#" id="prev" title="go to the next slide"></a>
+            <a href="#" id="next" title="go to the next slide"></a>
+
+            <div id="viewport">
+                <div id="box">
+                    <figure class="slide">
+                        <img src="img/yome.JPG">
+                    </figure>
+                    <figure class="slide">
+                        <img src="img/masanobu.JPG">
+                    </figure>
+                    <figure class="slide">
+                        <img src="img/boys.JPG">
+                    </figure>
+                    <figure class="slide">
+                        <img src="img/keigo.JPG">
+                    </figure>
+                    <figure class="slide">
+                        <img src="img/photo.JPG">
+                    </figure>
+                </div>
+            </div>
+
+            <div id="time-indicator"></div>
+        </div>
+
+        <footer>
+            <nav class="slider-controls">
+                <ul id="controls">
+                    <li><a class="goto-slide current" href="#" data-slideindex="0"></a></li>
+                    <li><a class="goto-slide" href="#" data-slideindex="1"></a></li>
+                    <li><a class="goto-slide" href="#" data-slideindex="2"></a></li>
+                    <li><a class="goto-slide" href="#" data-slideindex="3"></a></li>
+                    <li><a class="goto-slide" href="#" data-slideindex="4"></a></li>
+                </ul>
+            </nav>
+        </footer>
+    </section>
+
+
+</div>
+<script src="//code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="./js/box-slider-all.jquery.min.js"></script>
+<script>
+
+    $(function () {
+
+        var $box = $('#box');
+        $box.boxSlider({
+            speed: 1000
+            , autoScroll: true
+            , timeout: 5000
+            , next: '#next'
+            , prev: '#prev'
+            , pause: '#pause'
+            , effect: 'scrollVert3d'
+//            , onbefore: switchIndicator
+//            , onafter: startTimeIndicator
+        });
+    });
+
+</script>
+</body>
+</html>

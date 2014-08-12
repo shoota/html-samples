@@ -1,0 +1,142 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+body {
+    font-size: 14px;
+    font-family: 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #666;
+    background-image: url("textured_paper.png");
+    line-height: 18px;
+    margin: 0;
+}
+header {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #61D3FF;
+}
+
+h2{
+    font-size: 28px;
+    color: #477936;
+    padding-bottom: 8px;
+    text-indent: 4px;
+}
+h3{
+    font-size: 20px;
+    margin-left: 3px;
+    padding: 6px;
+}
+ul{
+    list-style-type: none;
+}
+.copy {
+    text-align: right;
+    font-size: 14px;
+    margin-right: 25px;
+    position: absolute;
+    right: 50px;
+    top: 40px;
+}
+
+#content{
+    width:90%;
+    margin-left: 5%;
+}
+#gmap{
+    margin-left: 10%;
+    height: 400px;
+    width: 80%;
+    border: solid #9d9d9d 1px;
+}
+
+
+.content{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.index-box{
+    text-align: center;
+}
+.index{
+    float: left;
+    font-size: 15px;
+}
+
+.page{
+    text-align: center;
+    font-size: 10px;
+    width: 30px;
+    position: relative;
+    margin-left: 50%;
+}
+
+.next{
+    font-size: 11px;
+    text-align: center;
+    width: 60px;
+    position: absolute;
+    right: 5%;
+    margin-top: 15px;
+}
+
+.mapCtl {
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    color: black;
+    font-family: Arial, sans-serif;
+    -webkit-user-select: none;
+    font-size: 13px;
+    background-color: white;
+    padding: 1px 6px;
+    border: 1px solid #717B87;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
+    min-width: 60px;
+    background-position: initial initial;
+    background-repeat: initial initial;
+}
+
+
+.cat-block{
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.list-text{
+    color: #080083;
+}
+.description{
+    margin-left: 10%;
+    font-size: 12px;
+}
+
+.slideshow {
+    margin-left: 10%;
+    text-align: center;
+    vertical-align: middle;
+    width: 920px;
+}
+.i-images{
+    width: 450px;
+    height: 450px;
+    padding: 2px;
+}
+
+.rtc-video{
+    margin-left: 80px;
+    width: 460px;
+    height: 350px;
+}
+
+.rtc-view{
+    width: 230px;
+    height: 175px;
+}
+
+.event{
+    margin-top: 5px;
+    background-color: rgba(193, 223, 17, 0.2);
+}

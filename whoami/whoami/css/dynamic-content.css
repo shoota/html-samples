@@ -1,0 +1,45 @@
+body {
+    font-family: "Gill Sans", "Trebuchet MS", sans-serif;
+    font-size: 1.0em;
+}
+
+li {
+    list-style-type : none;
+}
+
+h2 {
+    color: #0a3a2a;
+    font-size: 1.5em;
+}
+
+#result {
+    float: left;
+    width: 50%
+}
+
+#map {
+    width: 500px;
+    height: 500px
+}
+
+.title {
+    background-color: #024E52;
+    color: #EEBD7F;
+    margin-left: -10px;
+    padding-left: 6px;
+}
+.description {
+    display: none;
+}
+
+.event {
+    border: solid #033747 1px;
+    padding: 10px;
+    margin: 2px;
+}
+
+.summary {
+    border: #1A85E2 1px;
+    font-size: 10pt;
+}
+
